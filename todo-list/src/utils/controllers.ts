@@ -2,8 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import Item from "@/models/itemModel";
 
 /* Endpoints 
-PUT: http://localhost:3000/api/items/?id=63f26b20b3bfc1990d3a4e88
+PUT, DELETE: http://localhost:3000/api/items/?id=63f26b20b3bfc1990d3a4e88
 GET, POST: http://localhost:3000/api/items 
+GET by ID: http://localhost:3000/api/items/63f3db608b8e60ac0f57a279
 */
 
 /*Controllers*/
@@ -14,6 +15,19 @@ export async function getItems(_req: NextApiRequest, _res: NextApiResponse) {
     _res.status(200).json(items);
   } catch (error) {
     _res.status(404).json({ error: "Error fetching data" });
+  }
+}
+
+export async function getItem(_req: NextApiRequest, _res: NextApiResponse) {
+  try {
+    const { id } = _req.query;
+    if (id) {
+      const item = await Item.findById(id);
+      _res.status(200).json(item);
+    }
+    _res.status(404).json({ error: "Cannot find User id" });
+  } catch (error) {
+    _res.status(404).json({ error: "Unable to find this user" });
   }
 }
 
@@ -40,5 +54,18 @@ export async function putItem(_req: NextApiRequest, _res: NextApiResponse) {
     _res.status(404).json({ error: "Item not found" });
   } catch (error) {
     _res.status(404).json({ error: "Unable to update document" });
+  }
+}
+
+export async function deleteItem(_req: NextApiRequest, _res: NextApiResponse) {
+  try {
+    const { id } = _req.query;
+    if (id) {
+      const deleted = await Item.findByIdAndDelete(id);
+      _res.status(200).json({ message: "Item deleted", deleted });
+    }
+    _res.status(404).json({ error: "Item not found" });
+  } catch (error) {
+    _res.status(404).json({ error: "Unble to delete document" });
   }
 }

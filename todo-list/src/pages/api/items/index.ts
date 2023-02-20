@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getItems, addItems, putItem } from "@/utils/controllers";
+import { getItems, addItems, putItem, deleteItem } from "@/utils/controllers";
 import connectDB from "./../../../utils/connectDB";
 
 export default async function handler(
@@ -23,7 +23,7 @@ export default async function handler(
       putItem(_req, _res);
       break;
     case "DELETE":
-      _res.status(200).json({ method });
+      deleteItem(_req, _res);
       break;
     default:
       _res.setHeader("Allow", ["GET", "POST", "PUT", "DELETE"]);
