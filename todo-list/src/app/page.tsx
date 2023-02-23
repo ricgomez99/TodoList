@@ -1,7 +1,7 @@
-import { getItem } from "@/lib/helper";
+import { getItems } from "@/lib/helper";
 
 export default async function Home() {
-  const items = await getItem();
+  const items = await getItems();
 
   return (
     <main>
