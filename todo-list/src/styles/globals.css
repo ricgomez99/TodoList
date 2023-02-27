@@ -8,3 +8,14 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+.gradient-01 {
+  background: rgb(225, 225, 228);
+  background: linear-gradient(
+    270deg,
+    rgba(225, 225, 228, 1) 0%,
+    rgba(206, 209, 209, 1) 36%,
+    rgba(109, 111, 111, 1) 100%
+  );
+  filter: blur(125px);
+}
