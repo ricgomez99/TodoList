@@ -1,11 +1,11 @@
-import { getItems } from "@/lib/helper";
+"use client";
+
 import NavBar from "@/components/NavBar";
 import Form from "@/components/Form";
 import styles from "@/styles";
+import Items from "@/components/Items";
 
-export default async function Home() {
-  const items = await getItems();
-
+export default function Home() {
   return (
     <div className="bg-primary-gray overflow-hidden h-[100vh]">
       <NavBar />
@@ -13,9 +13,7 @@ export default async function Home() {
         <Form />
       </div>
       <div>
-        {items?.map((item: any) => (
-          <h3 key={item.id}>{item.title}</h3>
-        ))}
+        <Items />
       </div>
     </div>
   );
