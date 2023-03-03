@@ -2,7 +2,9 @@ const BASE_URL = "http://localhost:3000";
 
 //Returns items object
 export const getItems = async () => {
-  const response = await fetch(`${BASE_URL}/api/items`);
+  const response = await fetch(`${BASE_URL}/api/items`, {
+    cache: "force-cache",
+  });
   const data = response.json();
 
   return data;
