@@ -2,12 +2,18 @@ const BASE_URL = "http://localhost:3000";
 
 //Returns items object
 export const getItems = async () => {
-  const response = await fetch(`${BASE_URL}/api/items`, {
-    cache: "force-cache",
-  });
-  const data = response.json();
+  try {
+    const response = await fetch(`${BASE_URL}/api/items`, {
+      cache: "no-store",
+    });
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
+  }
 };
 
 //Returns the single item object

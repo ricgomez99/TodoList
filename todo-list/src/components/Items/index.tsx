@@ -1,22 +1,27 @@
+"use client";
+
+import { useQuery } from "react-query";
 import { getItems } from "@/lib/helper";
-import { use } from "react";
+import Error from "../Error";
 import Card from "../Card";
 
+interface Data {
+  id: string;
+  title: string;
+  body: string;
+  data: string;
+}
+
 export default function Items() {
-  const items = use(getItems());
-
-  interface Data {
-    id: string;
-    title: string;
-    body: string;
-    data: string;
-  }
-
+  const { data, error, isError, isLoading } = useQuery("items", getItems);
+  if (isLoading) return <div>Loading tasks...</div>;
+  if (isError) return <Error message={`Got error ${error}`} />;
   return (
-    <div>
-      {items?.map((item: Data) => (
-        <Card title={item.title} key={item.id} />
-      ))}
-    </div>
+    <>
+      <div>
+        {data &&
+          data.map((item: Data) => <Card title={item.title} key={item.id} />)}
+      </div>
+    </>
   );
 }

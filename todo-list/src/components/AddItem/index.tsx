@@ -1,8 +1,10 @@
 "use client";
 
 import { useReducer } from "react";
-
 import Success from "../Success";
+import Error from "../Error";
+import { useQueryClient, useMutation } from "react-query";
+import { addItem, getItems } from "@/lib/helper";
 
 const formReducer = (state: any, event: any) => {
   return {
@@ -13,16 +15,34 @@ const formReducer = (state: any, event: any) => {
 
 export default function AddItem() {
   const [formData, setFormData] = useReducer(formReducer, {});
+  const queryClient = useQueryClient();
+  //Post new data to the backend
+  const addMutation = useMutation(addItem, {
+    onSuccess: () => {
+      queryClient.prefetchQuery("items", getItems);
+    },
+  });
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (Object.keys(formData).length == 0) {
-      console.log("No Data Found");
+      return console.log("No Data Found");
     }
-    console.log(formData);
+    let { title, body } = formData;
+
+    //Data that will be passed to the backend
+    const model = {
+      title,
+      body,
+    };
+
+    addMutation.mutate(model);
   };
 
-  if (Object.keys(formData).length > 0)
-    return <Success message="Task added!" />;
+  //Validates if the data is uploaded or if we get an error
+  if (addMutation.isLoading) return <div>Loading...</div>;
+  if (addMutation.isError)
+    return <Error message="Error while uploading data" />;
+  if (addMutation.isSuccess) return <Success message={"Item created!"} />;
 
   return (
     <form className="grid grid-cols-1 w-[400px] gap-4" onSubmit={handleSubmit}>
