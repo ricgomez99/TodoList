@@ -22,7 +22,7 @@ export default function UpdateItem() {
   };
 
   if (Object.keys(formData).length > 0)
-    return <Success message="Task added!" />;
+    return <Success message="Task Updated!" />;
 
   return (
     <form className="grid grid-cols-1 w-[400px] gap-4" onSubmit={handleSubmit}>
