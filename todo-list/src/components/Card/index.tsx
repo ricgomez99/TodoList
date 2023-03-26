@@ -11,6 +11,7 @@ interface Props {
 export default function Card({ title, body }: Props) {
   // current state
   const stateVisible = useSelector((state: any) => state.app.client.toggleForm);
+
   const dispatch = useDispatch();
   //Action to change state value
   const onUpdate = () => {
