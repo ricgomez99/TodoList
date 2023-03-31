@@ -1,18 +1,19 @@
 "use client";
 
-import { useReducer } from "react";
-
 import Success from "../Success";
+import { getItem } from "@/lib/helper";
+import { useQuery } from "react-query";
 
-const formReducer = (state: any, event: any) => {
-  return {
-    ...state,
-    [event.target.name]: event.target.value,
-  };
-};
+export default function UpdateItem({ formId, formData, setFormData }: any) {
+  /* Feature not working pending fix */
+  // const { data, error, isError, isLoading } = useQuery(
+  //   ["items", formId],
+  //   (): any => getItem(formId)
+  // );
 
-export default function UpdateItem() {
-  const [formData, setFormData] = useReducer(formReducer, {});
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>Error</div>;
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (Object.keys(formData).length == 0) {
@@ -20,9 +21,6 @@ export default function UpdateItem() {
     }
     console.log(formData);
   };
-
-  if (Object.keys(formData).length > 0)
-    return <Success message="Task added!" />;
 
   return (
     <form className="grid grid-cols-1 w-[400px] gap-4" onSubmit={handleSubmit}>
@@ -33,6 +31,7 @@ export default function UpdateItem() {
           className="border w-full px-5 py-3 focus:outline-none rounded-md "
           placeholder="Title"
           onChange={setFormData}
+          // defaultValue={title}
         />
       </div>
       <div className="input-type">
@@ -42,6 +41,7 @@ export default function UpdateItem() {
           className="border w-full px-5 py-3 focus:outline-none rounded-md "
           placeholder="Note"
           onChange={setFormData}
+          // defaultValue={body}
         />
       </div>
       <button className="py-2 px-4 w-2/2 bg-[#425a78] font-bold hover:bg-[#2e4765] flex justify-center border rounded-md text-gray-100">

@@ -17,11 +17,17 @@ export const getItems = async () => {
 };
 
 //Returns the single item object
-export const getItem = async (id: string) => {
-  const response = await fetch(`${BASE_URL}/api/items/${id}`);
-  const data = await response.json();
+export const getItem = async (itemId: string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/items/${itemId}`);
+    const data = await response.json();
 
-  data ? data : {};
+    data ? data : {};
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
+  }
 };
 
 //Post an Item

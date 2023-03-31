@@ -1,4 +1,4 @@
-import connectDB from "./../../../utils/connectDB";
+import connectDB from "../../../utils/connectDB";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getItem, putItem, deleteItem } from "@/utils/controllers";
 
@@ -21,6 +21,7 @@ export default async function handler(
       deleteItem(_req, _res);
       break;
     default:
+      _res.setHeader("Allow", ["GET", "POST", "PUT", "DELETE"]);
       _res.status(405).end(`Method ${method} not allowed`);
       break;
   }

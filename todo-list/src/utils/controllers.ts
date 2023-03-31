@@ -20,9 +20,9 @@ export async function getItems(_req: NextApiRequest, _res: NextApiResponse) {
 
 export async function getItem(_req: NextApiRequest, _res: NextApiResponse) {
   try {
-    const { id } = _req.query;
-    if (id) {
-      const item = await Item.findById(id);
+    const { itemId } = _req.query;
+    if (itemId) {
+      const item = await Item.findById(itemId);
       _res.status(200).json(item);
     }
     _res.status(404).json({ error: "Cannot find User id" });

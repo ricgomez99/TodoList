@@ -5,12 +5,12 @@ import Items from "@/components/Items";
 
 export default async function Home() {
   return (
-    <div className="bg-primary-gray overflow-hidden h-[100vh]">
+    <div className="bg-primary-gray overflow-hidden h-[120vh]">
       <NavBar />
       <div className="relative">
         <Form />
       </div>
-      <div>
+      <div className="relative">
         <Items />
       </div>
     </div>
