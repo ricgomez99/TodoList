@@ -1,22 +1,25 @@
 "use client";
 
 import { useSelector, useDispatch } from "react-redux";
-import { toggleChangeAction } from "@/redux/reducer";
+import { toggleChangeAction, updateAction } from "@/redux/reducer";
 import { MdDelete, MdEditSquare } from "react-icons/md";
 
 interface Props {
+  id: string;
   title: string;
-  body?: string;
+  body: string;
+  date?: string;
 }
-export default function Card({ title, body }: Props) {
+export default function Card({ title, body, id }: Props) {
   // current state
   const stateVisible = useSelector((state: any) => state.app.client.toggleForm);
-
   const dispatch = useDispatch();
   //Action to change state value
   const onUpdate = () => {
     dispatch(toggleChangeAction());
-    console.log(stateVisible);
+    if (stateVisible) {
+      dispatch(updateAction(id));
+    }
   };
   return (
     <div className="lg:w-[600px] lg:h-[100px] w-[500px] h-[100px] rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism">

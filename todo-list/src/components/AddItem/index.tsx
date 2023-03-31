@@ -1,20 +1,11 @@
 "use client";
 
-import { useReducer } from "react";
 import Success from "../Success";
 import Error from "../Error";
 import { useQueryClient, useMutation } from "react-query";
 import { addItem, getItems } from "@/lib/helper";
 
-const formReducer = (state: any, event: any) => {
-  return {
-    ...state,
-    [event.target.name]: event.target.value,
-  };
-};
-
-export default function AddItem() {
-  const [formData, setFormData] = useReducer(formReducer, {});
+export default function AddItem({ formData, setFormData }: any) {
   const queryClient = useQueryClient();
   //Post new data to the backend
   const addMutation = useMutation(addItem, {

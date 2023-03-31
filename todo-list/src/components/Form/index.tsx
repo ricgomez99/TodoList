@@ -5,15 +5,14 @@ import { staggerContainer, fadeIn } from "@/utils/motion";
 import { TitleText, TypingText } from "@/components/CustomTexts";
 import styles from "@/styles";
 import Inputs from "../Inputs";
-import { toggleChangeAction, updateAction } from "@/redux/reducer";
+import { toggleChangeAction } from "@/redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Form({ id }: any) {
+export default function Form() {
   const visible = useSelector((state: any) => state.app.client.toggleForm);
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(toggleChangeAction());
-    if (visible) dispatch(updateAction(id));
   };
 
   return (
