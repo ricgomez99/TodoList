@@ -1,5 +1,6 @@
 "use client";
-
+import { motion } from "framer-motion";
+import { fadeIn } from "@/utils/motion";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleChangeAction, updateAction } from "@/redux/reducer";
 import { MdDelete, MdEditSquare } from "react-icons/md";
@@ -9,8 +10,9 @@ interface Props {
   title: string;
   body: string;
   date?: string;
+  index?: number | any;
 }
-export default function Card({ title, body, id }: Props) {
+export default function Card({ title, body, id, index }: Props) {
   // current state
   const stateVisible = useSelector((state: any) => state.app.client.toggleForm);
   const dispatch = useDispatch();
@@ -22,7 +24,10 @@ export default function Card({ title, body, id }: Props) {
     }
   };
   return (
-    <div className="lg:w-[600px] lg:h-[100px] w-[500px] h-[100px] rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism">
+    <motion.div
+      variants={fadeIn("down", "spring", index * 0.5, 1)}
+      className="lg:w-[600px] lg:h-[100px] w-[500px] h-[100px] rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism"
+    >
       <details className="flex flex-col justify-start">
         <summary className="my-[12px] mx-[0] p-[0.5em] font-bold text-[18px] leading-3 cursor-pointer text-[#41444B]">
           {title}
@@ -46,6 +51,6 @@ export default function Card({ title, body, id }: Props) {
           onClick={onUpdate}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
