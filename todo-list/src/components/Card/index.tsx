@@ -6,7 +6,7 @@ import { toggleChangeAction, updateAction } from "@/redux/reducer";
 import { MdDelete, MdEditSquare } from "react-icons/md";
 
 interface Props {
-  id: string;
+  id: string | any;
   title: string;
   body: string;
   date?: string;
@@ -18,7 +18,7 @@ export default function Card({ title, body, id, index }: Props) {
   const dispatch = useDispatch();
   //Action to change state value
   const onUpdate = () => {
-    dispatch(toggleChangeAction());
+    dispatch(toggleChangeAction(id));
     if (stateVisible) {
       dispatch(updateAction(id));
     }
