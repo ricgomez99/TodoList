@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { getItems } from "@/lib/helper";
 import Error from "../Error";
 import Card from "../Card";
+import Loading from "./loading";
 
 interface Data {
   _id: string;
@@ -17,7 +18,7 @@ interface Data {
 export default function Items() {
   const { data, error, isError, isLoading } = useQuery("items", getItems);
 
-  if (isLoading) return <div>Loading tasks...</div>;
+  if (isLoading) return <Loading />;
   if (isError) return <Error message={`Got error ${error}`} />;
   return (
     <>
