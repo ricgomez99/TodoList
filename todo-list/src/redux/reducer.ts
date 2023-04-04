@@ -5,6 +5,7 @@ const initialState = {
   client: { toggleForm: false, formId: undefined },
 };
 
+//Actions
 export const ReducerSlice = createSlice({
   name: "todoapp",
   initialState,
