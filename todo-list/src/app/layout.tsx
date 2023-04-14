@@ -21,11 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body className={`${dmSans.className}`}>
-        <Providers>
-          <QueryClientProvider client={queryClient}>
-            {children}
-          </QueryClientProvider>
-        </Providers>
+        <QueryClientProvider client={queryClient}>
+          <Providers>{children}</Providers>
+        </QueryClientProvider>
       </body>
     </html>
   );
