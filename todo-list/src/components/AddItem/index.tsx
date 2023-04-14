@@ -5,7 +5,12 @@ import Error from "../Error";
 import { useQueryClient, useMutation } from "react-query";
 import { addItem, getItems } from "@/lib/helper";
 
-export default function AddItem({ formData, setFormData }: any) {
+type State = {
+  formData: Record<string, string>;
+  setFormData: undefined;
+};
+
+export default function AddItem({ formData, setFormData }: State) {
   const queryClient = useQueryClient();
   //Post new data to the backend
   const addMutation = useMutation(addItem, {

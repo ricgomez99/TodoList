@@ -18,19 +18,21 @@ interface Data {
 export default function Items() {
   const { data, error, isError, isLoading } = useQuery("items", getItems);
 
+  console.log("data", data);
+
   if (isLoading) return <Loading />;
   if (isError) return <Error message={`Got error ${error}`} />;
   return (
-    <>
-      <motion.div
-        variants={staggerContainer as any}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
-        className="mx-auto yPaddings lg:w-[650px] w-[600px]  h-auto flex flex-col gap-[14px]"
-      >
-        {data &&
-          data.map((item: Data, index: number) => (
+    <section>
+      {data.length &&
+        data.map((item: Data, index: number) => (
+          <motion.div
+            variants={staggerContainer as any}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.25 }}
+            className="mx-auto yPaddings lg:w-[650px] w-[600px]  h-auto flex flex-col gap-[14px]"
+          >
             <Card
               title={item.title}
               body={item.body}
@@ -38,8 +40,8 @@ export default function Items() {
               key={item._id}
               index={index}
             />
-          ))}
-      </motion.div>
-    </>
+          </motion.div>
+        ))}
+    </section>
   );
 }
