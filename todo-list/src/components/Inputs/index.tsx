@@ -1,10 +1,11 @@
 "use client";
 import AddItem from "../AddItem";
 import UpdateItem from "../UpdateItem";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/lib/hooks";
+import { RootState } from "@/redux/store";
 import { useReducer } from "react";
 
-const formReducer = (state: any, event: any) => {
+const formReducer = (state: RootState, event: any) => {
   return {
     ...state,
     [event.target.name]: event.target.value,
@@ -13,7 +14,7 @@ const formReducer = (state: any, event: any) => {
 export default function Inputs() {
   const [formData, setFormData] = useReducer(formReducer, {});
 
-  const formId = useSelector((state: any) => state.app.client.formId);
+  const formId = useAppSelector((state) => state.app.client.formId);
 
   return (
     <div className="container mt-[18px] mx-auto flex justify-center">

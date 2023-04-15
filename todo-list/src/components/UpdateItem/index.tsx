@@ -6,20 +6,18 @@ import { useQuery } from "react-query";
 
 export default function UpdateItem({ formId, formData, setFormData }: any) {
   /* Feature not working pending fix */
-  // const { data, error, isError, isLoading } = useQuery(
-  //   ["items", formId],
-  //   (): any => getItem(formId)
-  // );
+  const { data, error, isError, isLoading } = useQuery(["items", formId], () =>
+    getItem(formId)
+  );
+
+  const { title, body } = data;
 
   // if (isLoading) return <div>Loading...</div>;
   // if (isError) return <div>Error</div>;
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (Object.keys(formData).length == 0) {
-      console.log("No Data Found");
-    }
-    console.log(formData);
+    let updated = Object.assign({}, data);
   };
 
   return (
