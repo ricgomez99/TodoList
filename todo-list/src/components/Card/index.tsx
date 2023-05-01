@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { toggleChangeAction, updateAction } from "@/redux/reducer";
 import { MdDelete, MdEditSquare } from "react-icons/md";
 
@@ -14,8 +14,8 @@ interface Props {
 }
 export default function Card({ title, body, id, index }: Props) {
   // current state
-  const stateVisible = useSelector((state: any) => state.app.client.toggleForm);
-  const dispatch = useDispatch();
+  const stateVisible = useAppSelector((state) => state.app.client.toggleForm);
+  const dispatch = useAppDispatch();
   //Action to change state value
   const onUpdate = () => {
     dispatch(toggleChangeAction(id));

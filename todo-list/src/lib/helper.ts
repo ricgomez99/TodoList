@@ -1,4 +1,10 @@
 const BASE_URL = "http://localhost:3000";
+import { Task } from "@/app/types";
+
+type FormData = {
+  title: string;
+  body: string;
+};
 
 //Returns items object
 export const getItems = async () => {
@@ -6,7 +12,7 @@ export const getItems = async () => {
     const response = await fetch(`${BASE_URL}/api/items`, {
       cache: "no-store",
     });
-    const data = await response.json();
+    const data = (await response.json()) as Task[];
 
     return data;
   } catch (error) {
@@ -18,20 +24,15 @@ export const getItems = async () => {
 
 //Returns the single item object
 export const getItem = async (itemId: string) => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/items/${itemId}`);
-    const data = await response.json();
+  const response = await fetch(`${BASE_URL}/api/items/${itemId}`);
+  const data = (await response.json()) as Task[];
 
-    data ? data : {};
-  } catch (error) {
-    if (error instanceof Error) {
-      console.log(error.message);
-    }
-  }
+  if (data) return data;
+  return {};
 };
 
 //Post an Item
-export const addItem = async (formData: unknown) => {
+export async function addItem(formData: unknown) {
   try {
     const Info = {
       method: "POST",
@@ -47,35 +48,29 @@ export const addItem = async (formData: unknown) => {
       console.log(error.message);
     }
   }
-};
+}
 
 //Update an Item
-export const updateItem = async (id: string, formData: unknown) => {
-  try {
-    const Info = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    };
-    const response = await fetch(`${BASE_URL}/api/items/${id}`, Info);
-    const data = await response.json();
+export async function updateItem(itemId: string, formData: FormData) {
+  const Options = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  };
 
-    return data;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.log(error.message);
-    }
-  }
-};
+  const response = await fetch(`${BASE_URL}/api/items/${itemId}`, Options);
+  const data = await response.json();
+  return data;
+}
 
 //Delete item
-export const deleteItem = async (id: string) => {
+export async function deleteItem(itemId: string) {
   try {
     const Info = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     };
-    const response = await fetch(`${BASE_URL}/api/items/${id}`, Info);
+    const response = await fetch(`${BASE_URL}/api/items/${itemId}`, Info);
     const data = await response.json();
 
     return data;
@@ -84,4 +79,4 @@ export const deleteItem = async (id: string) => {
       console.log(error.message);
     }
   }
-};
+}

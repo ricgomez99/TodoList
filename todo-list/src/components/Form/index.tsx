@@ -6,11 +6,11 @@ import { TitleText, TypingText } from "@/components/CustomTexts";
 import styles from "@/styles";
 import Inputs from "../Inputs";
 import { toggleChangeAction } from "@/redux/reducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 export default function Form() {
-  const visible = useSelector((state: any) => state.app.client.toggleForm);
-  const dispatch = useDispatch();
+  const visible = useAppSelector((state) => state.app.client.toggleForm);
+  const dispatch = useAppDispatch();
   const handleClick = () => {
     dispatch(toggleChangeAction());
   };

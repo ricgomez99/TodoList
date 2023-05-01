@@ -1,19 +1,43 @@
 "use client";
 import AddItem from "../AddItem";
 import UpdateItem from "../UpdateItem";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/lib/hooks";
 import { useReducer } from "react";
 
-const formReducer = (state: any, event: any) => {
-  return {
-    ...state,
-    [event.target.name]: event.target.value,
+const initState = {
+  title: "",
+  body: "",
+};
+
+export type ActionType = {
+  type: "textInput";
+  payload: {
+    key: string;
+    value: string;
   };
 };
-export default function Inputs() {
-  const [formData, setFormData] = useReducer(formReducer, {});
 
-  const formId = useSelector((state: any) => state.app.client.formId);
+const formReducer = (
+  state: typeof initState,
+  action: ActionType
+): typeof initState => {
+  switch (action.type) {
+    case "textInput":
+      return {
+        ...state,
+        [action.payload.key]: action.payload.value,
+      };
+
+    default:
+      throw new Error(`Unknown action type: ${action.type}`);
+  }
+};
+
+export default function Inputs() {
+  const [formData, setFormData] = useReducer(formReducer, initState);
+
+  const formId = useAppSelector((state) => state.app.client.formId);
+  // console.log(typeof formId); -> String
 
   return (
     <div className="container mt-[18px] mx-auto flex justify-center">

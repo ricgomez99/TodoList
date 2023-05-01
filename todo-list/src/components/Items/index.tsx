@@ -2,30 +2,24 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer } from "@/utils/motion";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getItems } from "@/lib/helper";
 import Error from "../Error";
 import Card from "../Card";
 import Loading from "./loading";
 
-interface Data {
-  _id: string;
-  title: string;
-  body: string;
-  date?: string;
-}
-
 export default function Items() {
-  const { data, error, isError, isLoading } = useQuery("items", getItems);
-
-  console.log("data", data);
+  const { data, error, isError, isLoading } = useQuery({
+    queryKey: ["hydrate-items"],
+    queryFn: () => getItems(),
+  });
 
   if (isLoading) return <Loading />;
   if (isError) return <Error message={`Got error ${error}`} />;
   return (
     <section>
-      {data.length &&
-        data.map((item: Data, index: number) => (
+      {data &&
+        data.map((item, index: number) => (
           <motion.div
             variants={staggerContainer as any}
             initial="hidden"

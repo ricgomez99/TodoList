@@ -2,12 +2,12 @@
 
 import Success from "../Success";
 import Error from "../Error";
-import { useQueryClient, useMutation } from "react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { addItem, getItems } from "@/lib/helper";
 
 type State = {
-  formData: Record<string, string>;
-  setFormData: undefined;
+  formData: { title: string; body: string };
+  setFormData: any;
 };
 
 export default function AddItem({ formData, setFormData }: State) {
@@ -15,7 +15,7 @@ export default function AddItem({ formData, setFormData }: State) {
   //Post new data to the backend
   const addMutation = useMutation(addItem, {
     onSuccess: () => {
-      queryClient.prefetchQuery("items", getItems);
+      queryClient.prefetchQuery(["items"], getItems);
     },
   });
   const handleSubmit = (e: any) => {
