@@ -44,11 +44,11 @@ export async function addItems(_req: NextApiRequest, _res: NextApiResponse) {
 
 export async function putItem(_req: NextApiRequest, _res: NextApiResponse) {
   try {
-    const { id } = _req.query;
-    const { body } = _req;
+    const { itemId } = _req.query;
+    const formData = _req.body;
 
-    if (id && body) {
-      const item = await Item.findByIdAndUpdate(id, body);
+    if (itemId && formData) {
+      const item = await Item.findByIdAndUpdate(itemId, formData);
       _res.status(200).json(item);
     }
     _res.status(404).json({ error: "Item not found" });
@@ -59,9 +59,9 @@ export async function putItem(_req: NextApiRequest, _res: NextApiResponse) {
 
 export async function deleteItem(_req: NextApiRequest, _res: NextApiResponse) {
   try {
-    const { id } = _req.query;
-    if (id) {
-      const deleted = await Item.findByIdAndDelete(id);
+    const { itemId } = _req.query;
+    if (itemId) {
+      const deleted = await Item.findByIdAndDelete(itemId);
       _res.status(200).json({ message: "Item deleted", deleted });
     }
     _res.status(404).json({ error: "Item not found" });
