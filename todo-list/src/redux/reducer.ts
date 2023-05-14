@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 //Initial state property
 const initialState = {
-  client: { toggleForm: false, formId: undefined },
+  client: { toggleForm: false, formId: undefined, deleteItem: null },
 };
 
 //Actions
@@ -17,10 +17,14 @@ export const ReducerSlice = createSlice({
     updateAction: (state, action) => {
       state.client.formId = action.payload;
     },
+    deleteAction: (state, action) => {
+      state.client.deleteItem = action.payload;
+    },
   },
 });
 
 //Exports the actions
-export const { toggleChangeAction, updateAction } = ReducerSlice.actions;
+export const { toggleChangeAction, updateAction, deleteAction } =
+  ReducerSlice.actions;
 //Exports the reducer
 export default ReducerSlice.reducer;

@@ -4,21 +4,28 @@ import Success from "../Success";
 import Error from "../Error";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { addItem, getItems } from "@/lib/helper";
+import { ActionType } from "../Inputs";
 
-type State = {
-  formData: { title: string; body: string };
-  setFormData: any;
+type Form = {
+  title: string;
+  body: string;
 };
+interface State {
+  formData: Form;
+  setFormData: React.Dispatch<ActionType>;
+}
 
 export default function AddItem({ formData, setFormData }: State) {
   const queryClient = useQueryClient();
+
   //Post new data to the backend
   const addMutation = useMutation(addItem, {
     onSuccess: () => {
-      queryClient.prefetchQuery(["items"], getItems);
+      queryClient.prefetchQuery(["hydrate-items"], getItems);
     },
   });
-  const handleSubmit = (e: any) => {
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (Object.keys(formData).length == 0) {
       return console.log("No Data Found");
@@ -32,6 +39,17 @@ export default function AddItem({ formData, setFormData }: State) {
     };
 
     addMutation.mutate(model);
+  };
+
+  //Input change handler
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      type: "textInput",
+      payload: {
+        key: event.target.name,
+        value: event.target.value,
+      },
+    });
   };
 
   //Validates if the data is uploaded or if we get an error
@@ -48,7 +66,7 @@ export default function AddItem({ formData, setFormData }: State) {
           name="title"
           className="border w-full px-5 py-3 focus:outline-none rounded-md "
           placeholder="Title"
-          onChange={setFormData}
+          onChange={handleChange}
         />
       </div>
       <div className="input-type">
@@ -57,7 +75,7 @@ export default function AddItem({ formData, setFormData }: State) {
           name="body"
           className="border w-full px-5 py-3 focus:outline-none rounded-md "
           placeholder="Note"
-          onChange={setFormData}
+          onChange={handleChange}
         />
       </div>
       <button className="py-2 px-4 w-2/2 bg-[#425a78] font-bold hover:bg-[#2e4765] flex justify-center border rounded-md text-gray-100">
