@@ -2,7 +2,11 @@
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { toggleChangeAction, updateAction } from "@/redux/reducer";
+import {
+  toggleChangeAction,
+  updateAction,
+  deleteAction,
+} from "@/redux/reducer";
 import { MdDelete, MdEditSquare } from "react-icons/md";
 
 interface Props {
@@ -16,6 +20,7 @@ export default function Card({ title, body, id, index }: Props) {
   // current state
   const stateVisible = useAppSelector((state) => state.app.client.toggleForm);
   const dispatch = useAppDispatch();
+
   //Action to change state value
   const onUpdate = () => {
     dispatch(toggleChangeAction(id));
@@ -23,6 +28,14 @@ export default function Card({ title, body, id, index }: Props) {
       dispatch(updateAction(id));
     }
   };
+
+  //Delete action trigger
+  const onDelete = () => {
+    if (!stateVisible) {
+      dispatch(deleteAction(id));
+    }
+  };
+
   return (
     <motion.div
       variants={fadeIn("down", "spring", index * 0.5, 1)}
@@ -42,6 +55,7 @@ export default function Card({ title, body, id, index }: Props) {
           width={25}
           height={25}
           className="cursor-pointer"
+          onClick={onDelete}
         />
         <MdEditSquare
           color="#4b4d52"
