@@ -45,7 +45,7 @@ export default function Card({ title, body, id, index }: Props) {
         <summary className="my-[12px] mx-[0] p-[0.5em] font-bold text-[18px] leading-3 cursor-pointer text-[#41444B]">
           {title}
         </summary>
-        <p className="text-[15px] text-[#aaa9b3] font-normal px-[24px]">
+        <p className="text-[15px] text-[#9BA4B5] font-normal px-[24px]">
           {body}
         </p>
       </details>

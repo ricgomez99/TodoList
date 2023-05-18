@@ -7,6 +7,8 @@ import { getItems } from "@/lib/helper";
 import Error from "../Error";
 import Card from "../Card";
 import Loading from "./loading";
+import { useAppSelector } from "@/lib/hooks";
+import Confirmation from "@/Modal/confirmation";
 
 export default function Items() {
   const { data, error, isError, isLoading } = useQuery({
@@ -14,8 +16,13 @@ export default function Items() {
     queryFn: () => getItems(),
   });
 
+  //deleteId state
+  const deleteId = useAppSelector((state) => state.app.client.deletedItem);
+
   if (isLoading) return <Loading />;
   if (isError) return <Error message={`Got error ${error}`} />;
+  if (deleteId) return <Confirmation deleteId={deleteId} />;
+
   return (
     <section>
       {data &&

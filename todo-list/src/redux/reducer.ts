@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 //Initial state property
 const initialState = {
-  client: { toggleForm: false, formId: undefined, deleteItem: null },
+  client: { toggleForm: false, formId: undefined, deletedItem: null },
 };
 
 //Actions
@@ -18,7 +18,7 @@ export const ReducerSlice = createSlice({
       state.client.formId = action.payload;
     },
     deleteAction: (state, action) => {
-      state.client.deleteItem = action.payload;
+      state.client.deletedItem = action.payload;
     },
   },
 });

@@ -10,7 +10,7 @@ const NavBar = () => (
     variants={navVariants}
     initial="hidden"
     whileInView="show"
-    className={`${styles.xPaddings} py-6 relative`}
+    className={`${styles.xPaddings} py-6 relative mx-auto max-w-[1366px]`}
   >
     <div className="absolute w-[50%] inset-0 gradient-01" />
     <div className={`${styles.innerWidth}mx-auto flex justify-between gap-8`}>
