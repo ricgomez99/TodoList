@@ -5,9 +5,9 @@ import Items from "@/components/Items";
 
 export default async function Home() {
   return (
-    <div className="bg-primary-gray overflow-hidden h-[120vh]">
+    <div className="bg-primary-gray h-[100vh] overflow-y-scroll">
       <NavBar />
-      <div className="relative">
+      <div className="relative z-0">
         <Form />
       </div>
       <div className="relative">

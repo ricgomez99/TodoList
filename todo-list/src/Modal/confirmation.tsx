@@ -13,7 +13,7 @@ export default function Confirmation({ deleteId }: DelteId) {
 
   //mutation
   const deleteMutation = useMutation((id: string) => deleteItem(id), {
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.prefetchQuery(["hydrate-items"], getItems);
     },
   });
@@ -29,7 +29,7 @@ export default function Confirmation({ deleteId }: DelteId) {
 
   return (
     <>
-      <article className="bg-[#00000070] fixed flex flex-col items-center justify-center inset-0 overflow-hidden">
+      <article className="bg-[#00000070] fixed flex flex-col items-center justify-center inset-0 overflow-hidden z-1">
         <div className="bg-[#fff] w-[500px] max-h-[600px]">
           <div className="p-[10px] flex justify-center">
             <h2>Are you sure?</h2>
