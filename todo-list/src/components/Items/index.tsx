@@ -32,7 +32,7 @@ export default function Items() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, amount: 0.25 }}
-            className="mx-auto yPaddings lg:w-[650px] w-[600px]  h-auto flex flex-col gap-[14px]"
+            className="mx-auto yPaddings lg:max-w-[650px] w-[100%] px-[20px]  h-auto flex flex-col gap-[14px]"
           >
             <Card
               title={item.title}
