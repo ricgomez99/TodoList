@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.gradient-01 {
+  background: rgb(225, 225, 228);
+  background: linear-gradient(
+    270deg,
+    rgba(225, 225, 228, 1) 0%,
+    rgba(206, 209, 209, 1) 36%,
+    rgba(109, 111, 111, 1) 100%
+  );
+  filter: blur(125px);
+}
+
+.glassmorphism {
+  /* From https://css.glass */
+  background: rgba(154, 168, 177, 0.23);
+  border-radius: 10px;
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.9px);
+  -webkit-backdrop-filter: blur(4.9px);
+  border: 1px solid rgba(197, 212, 221, 0.31);
+}
