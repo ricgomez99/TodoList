@@ -28,11 +28,12 @@ export default function Items() {
       {data &&
         data.map((item, index: number) => (
           <motion.div
+            key={index}
             variants={staggerContainer as any}
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, amount: 0.25 }}
-            className="mx-auto yPaddings lg:w-[650px] w-[600px]  h-auto flex flex-col gap-[14px]"
+            className="mx-auto yPaddings lg:max-w-[650px] w-[100%] px-[20px]  h-auto flex flex-col gap-[14px]"
           >
             <Card
               title={item.title}

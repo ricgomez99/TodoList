@@ -1,10 +1,12 @@
 "use client";
 
-import Success from "../Success";
+import { displayMessage } from "@/lib/alert";
 import Error from "../Error";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { addItem, getItems } from "@/lib/helper";
 import { ActionType } from "../Inputs";
+import { useAppDispatch } from "@/lib/hooks";
+import { toggleChangeAction } from "@/redux/reducer";
 
 type Form = {
   title: string;
@@ -17,11 +19,12 @@ interface State {
 
 export default function AddItem({ formData, setFormData }: State) {
   const queryClient = useQueryClient();
+  const dispatch = useAppDispatch();
 
   //Post new data to the backend
   const addMutation = useMutation(addItem, {
-    onSuccess: () => {
-      queryClient.prefetchQuery(["hydrate-items"], getItems);
+    onSuccess: async () => {
+      await queryClient.prefetchQuery(["hydrate-items"], getItems);
     },
   });
 
@@ -39,6 +42,7 @@ export default function AddItem({ formData, setFormData }: State) {
     };
 
     addMutation.mutate(model);
+    dispatch(toggleChangeAction());
   };
 
   //Input change handler
@@ -52,11 +56,15 @@ export default function AddItem({ formData, setFormData }: State) {
     });
   };
 
+  //Display success alert
+  const handleClick = () => {
+    displayMessage("Task created Successfully");
+  };
+
   //Validates if the data is uploaded or if we get an error
   if (addMutation.isLoading) return <div>Loading...</div>;
   if (addMutation.isError)
     return <Error message="Error while uploading data" />;
-  if (addMutation.isSuccess) return <Success message={"Item created!"} />;
 
   return (
     <form className="grid grid-cols-1 w-[400px] gap-4" onSubmit={handleSubmit}>
@@ -78,7 +86,10 @@ export default function AddItem({ formData, setFormData }: State) {
           onChange={handleChange}
         />
       </div>
-      <button className="py-2 px-4 w-2/2 bg-[#425a78] font-bold hover:bg-[#2e4765] flex justify-center border rounded-md text-gray-100">
+      <button
+        onClick={handleClick}
+        className="py-2 px-4 w-2/2 bg-[#425a78] font-bold hover:bg-[#2e4765] flex justify-center border rounded-md text-gray-100"
+      >
         Create
       </button>
     </form>

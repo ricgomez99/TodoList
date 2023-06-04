@@ -39,32 +39,32 @@ export default function Card({ title, body, id, index }: Props) {
   return (
     <motion.div
       variants={fadeIn("down", "spring", index * 0.5, 1)}
-      className="lg:w-[600px] lg:h-[100px] w-[500px] h-[100px] rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism"
+      className="lg:w-[600px] min-h-[80px] max-w-[500px] w-[100%] rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism"
     >
       <details className="flex flex-col justify-start">
-        <summary className="my-[12px] mx-[0] p-[0.5em] font-bold text-[18px] leading-3 cursor-pointer text-[#41444B]">
+        <summary className="mt-[12px] mb-0 mx-[0] p-[0.5em] font-bold text-[18px] leading-3 cursor-pointer text-[#41444B]">
           {title}
         </summary>
-        <p className="text-[15px] text-[#9BA4B5] font-normal px-[24px]">
+        <p className="text-[15px] text-[#9BA4B5] font-normal px-[24px] pb-[10px]">
           {body}
         </p>
       </details>
-      <div className="flex flex-col justify-evenly gap-[10px] align-middle my-[8px] mx-[10px]">
+      <div className="flex flex-col justify-evenly gap-[10px] max-h-[40px] self-center  align-middle my-[8px] mx-[10px]">
         <MdDelete
-          color="#4b4d52"
           width={25}
           height={25}
-          className="cursor-pointer"
+          className="cursor-pointer text-[#4b4d52] hover:text-[#95989f]"
           onClick={onDelete}
         />
         <MdEditSquare
-          color="#4b4d52"
           width={25}
           height={25}
-          className="cursor-pointer"
+          className="cursor-pointer text-[#4b4d52] hover:text-[#95989f]"
           onClick={onUpdate}
         />
       </div>
     </motion.div>
   );
 }
+
+// color="#4b4d52"

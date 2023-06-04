@@ -5,7 +5,7 @@ export default function Loading() {
         {[...(Array(4).keys() as any)].map((e, index) => (
           <li key={index} className="list-none gap-2">
             <span
-              className="inline-block h-[100px] animate-pulse w-[500px] lg:max-w-[600px] rounded-md bg-[#D1D1D1]"
+              className="inline-block h-[80px] animate-pulse w-[500px] lg:max-w-[600px] rounded-md bg-[#D1D1D1]"
               style={{
                 animationDelay: `${(e as any) * 0.5}s`,
                 animationDuration: "1s",

@@ -16,10 +16,10 @@ const NavBar = () => (
     <div className={`${styles.innerWidth}mx-auto flex justify-between gap-8`}>
       <Image
         src="/check.png"
-        alt="icon"
+        alt="Navbar icon"
         width={27}
         height={27}
-        className="object-contain"
+        className="object-contain w-[27px] h-[27px]"
       />
       <h2 className="font-extrabold text-[24px] leading-[30px] text-black">
         ToDo
