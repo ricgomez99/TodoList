@@ -28,6 +28,7 @@ export default function Items() {
       {data &&
         data.map((item, index: number) => (
           <motion.div
+            key={index}
             variants={staggerContainer as any}
             initial="hidden"
             whileInView="show"

@@ -10,7 +10,7 @@ export const ReducerSlice = createSlice({
   name: "todoapp",
   initialState,
   reducers: {
-    toggleChangeAction: (state): void | any => {
+    toggleChangeAction: (state) => {
       // >> Action with current state and oposite state returned
       state.client.toggleForm = !state.client.toggleForm;
     },

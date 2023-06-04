@@ -5,6 +5,8 @@ import Providers from "@/app/providers";
 import { DM_Sans } from "@next/font/google";
 import QueryProvider from "../utils/queryProvider";
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
@@ -28,6 +30,7 @@ export default function RootLayout({
         <Providers>
           <QueryProvider>{children}</QueryProvider>
         </Providers>
+        <ToastContainer />
       </body>
     </html>
   );
