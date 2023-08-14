@@ -24,7 +24,7 @@ export default function Items() {
   if (deleteId) return <Confirmation deleteId={deleteId} />;
 
   return (
-    <section>
+    <section className="overflow-y-scroll !scroll-smooth max-h-[330px] max-w-[550px] mx-auto scrollbar scrollbar-w-1 scrollbar-track-[#D8D8D8] scrollbar-thumb-rounded-lg scrollbar-thumb-gray-400 ">
       {data &&
         data.map((item, index: number) => (
           <motion.div
