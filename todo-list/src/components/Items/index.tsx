@@ -9,6 +9,7 @@ import Card from "../Card";
 import Loading from "./loading";
 import { useAppSelector } from "@/lib/hooks";
 import Confirmation from "@/Modal/confirmation";
+import { ScrollTopButton } from "../ScrollTopButton";
 
 export default function Items() {
   const { data, error, isError, isLoading } = useQuery({
@@ -24,7 +25,7 @@ export default function Items() {
   if (deleteId) return <Confirmation deleteId={deleteId} />;
 
   return (
-    <section className="overflow-y-scroll !scroll-smooth max-h-[330px] max-w-[550px] mx-auto scrollbar scrollbar-w-1 scrollbar-track-[#D8D8D8] scrollbar-thumb-rounded-lg scrollbar-thumb-gray-400 ">
+    <section className="overflow-y-scroll !scroll-smooth max-h-[330px] max-w-[550px] mx-auto scrollbar-none hover:scrollbar scrollbar-w-1 scrollbar-track-[#D8D8D8] scrollbar-thumb-rounded-lg scrollbar-thumb-gray-400 pb-[20px]">
       {data &&
         data.map((item, index: number) => (
           <motion.div
@@ -44,6 +45,7 @@ export default function Items() {
             />
           </motion.div>
         ))}
+      <ScrollTopButton />
     </section>
   );
 }
