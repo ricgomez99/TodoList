@@ -1,9 +1,12 @@
 "use client";
 
-import useBackToTop from "@/utils/useBackToTop";
+import { forwardRef } from "react";
 
-export function ScrollTopButton() {
-  const backToTop = useBackToTop();
+interface ButtonProps {
+  reference: HTMLElement;
+}
+
+export function ScrollTopButton({ reference }: ButtonProps) {
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -13,7 +16,7 @@ export function ScrollTopButton() {
 
   return (
     <>
-      {backToTop ? (
+      {/* {backToTop ? (
         <button
           className="bg-transparent text-[16px] text-grey-100 mx-auto px-[20px] py-[8px] border-b-gray-200"
           onClick={handleScrollToTop}
@@ -22,7 +25,7 @@ export function ScrollTopButton() {
         </button>
       ) : (
         <></>
-      )}
+      )} */}
     </>
   );
 }
