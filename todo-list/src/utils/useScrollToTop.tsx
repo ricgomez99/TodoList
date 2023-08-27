@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 //   reference: RefObject<HTMLDivElement>;
 // }
 
-export default function useScrollToTop(reference: HTMLDivElement): Boolean {
+export default function useScrollToTop(reference: HTMLElement): Boolean {
   const [existReference, setExistReference] = useState(false);
 
   useEffect(() => {

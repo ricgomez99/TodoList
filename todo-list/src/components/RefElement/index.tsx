@@ -1,8 +1,8 @@
 "use client";
 
 import { forwardRef, RefObject } from "react";
-import { useEffect } from "react";
-import useScrollToTop from "@/utils/useScrollToTop";
+import { useEffect, useState } from "react";
+import { ScrollTopButton } from "../ScrollTopButton";
 
 interface ChildProps {
   children: React.ReactNode;
@@ -10,8 +10,15 @@ interface ChildProps {
 
 const RefElement = forwardRef<HTMLDivElement, ChildProps>(
   ({ children }, ref) => {
+    //Potential custom hook (Find how to pass the ref.current to child element)
+    const [displayButton, setDisplayButton] = useState<Boolean>(false);
     const currentElement = ref as RefObject<HTMLDivElement>;
-    let scrollAxis: number;
+    const handleScrollTop = () => {
+      currentElement.current?.children[0].scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
 
     useEffect(() => {
       currentElement.current?.children[0].addEventListener(
@@ -19,12 +26,21 @@ const RefElement = forwardRef<HTMLDivElement, ChildProps>(
         (event) => {
           let currentTarget = event.target as HTMLElement;
 
-          scrollAxis = currentTarget.scrollTop;
+          currentTarget.scrollTop > 100
+            ? setDisplayButton(true)
+            : setDisplayButton(false);
         }
       );
     }, []);
 
-    return <div ref={ref}>{children}</div>;
+    return (
+      <div ref={ref}>
+        {children}
+        {displayButton ? (
+          <ScrollTopButton handleScrollToTop={handleScrollTop} />
+        ) : null}
+      </div>
+    );
   }
 );
 
