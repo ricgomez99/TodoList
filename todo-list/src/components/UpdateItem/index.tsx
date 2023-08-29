@@ -35,9 +35,6 @@ export default function UpdateItem({ formId, formData, setFormData }: Props) {
     }
   );
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (isError) return <div>Error</div>;
-
   const dispatch = useAppDispatch();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

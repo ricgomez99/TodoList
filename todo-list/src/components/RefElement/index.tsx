@@ -10,7 +10,7 @@ interface ChildProps {
 
 const RefElement = forwardRef<HTMLDivElement, ChildProps>(
   ({ children }, ref) => {
-    //Potential custom hook (Find how to pass the ref.current to child element)
+    //Potential custom hook (Find out how to pass the ref.current to child element)
     const [displayButton, setDisplayButton] = useState<Boolean>(false);
     const currentElement = ref as RefObject<HTMLDivElement>;
     const handleScrollTop = () => {
