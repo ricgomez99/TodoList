@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
-
+import { FaAngleUp } from "react-icons/fa6";
 interface ButtonProps {
   handleScrollToTop: () => void;
 }
@@ -15,10 +15,10 @@ export function ScrollTopButton({ handleScrollToTop }: ButtonProps) {
       viewport={{ once: false, amount: 0.25 }}
     >
       <button
-        className="transition ease-in-out duration-500 hover:bg-slate-900  bg-[#96B6C5] text-[16px] text-grey-100 flex mx-auto px-[20px] py-[8px] border-b-gray-200"
+        className="transition ease-in-out duration-500 hover:bg-[#D8D8D8]  bg-[#fff] text-[16px] text-grey-100 flex mx-auto mt-2 px-[20px] py-[8px] border-b-gray-200 rounded-full"
         onClick={handleScrollToTop}
       >
-        go to top
+        <FaAngleUp />
       </button>
     </motion.div>
   );
