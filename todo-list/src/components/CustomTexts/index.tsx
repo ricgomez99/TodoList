@@ -2,7 +2,7 @@
 
 import { textContainer, textVariant2 } from "@/utils/motion";
 import { motion } from "framer-motion";
-import { ReactComponentElement, ReactHTMLElement } from "react";
+import { ReactComponentElement } from "react";
 
 interface Data {
   title: string | ReactComponentElement<any> | any;

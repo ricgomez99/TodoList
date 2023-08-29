@@ -1,6 +1,5 @@
 import NavBar from "@/components/NavBar";
 import Form from "@/components/Form";
-import styles from "@/styles";
 import Items from "@/components/Items";
 
 export default async function Home() {
