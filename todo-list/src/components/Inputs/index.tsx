@@ -37,7 +37,6 @@ export default function Inputs() {
   const [formData, setFormData] = useReducer(formReducer, initState);
 
   const formId = useAppSelector((state) => state.app.client.formId);
-  // console.log(typeof formId); -> String
 
   return (
     <div className="container mt-[18px] mx-auto flex justify-center">
