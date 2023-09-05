@@ -31,4 +31,19 @@ This web-based to-do list application allows you to manage your daily tasks effi
   <img src="https://github.com/ricgomez99/TodoList/assets/79469076/9ecb9404-1f1b-4587-9d11-6c126467c333" width="600px" height="400px" />
 </div>
 
-**Note:** The app will run locally from your computer
+> **Note:**
+The app will run locally from your computer
+
+## Contributing to the Project
+<p>We would love for you to contribute to the development of this application! Here are the steps to get started:</p>
+
+<div align="center">
+  <img src="https://github.com/ricgomez99/TodoList/assets/79469076/db312d23-a17c-4a81-88fe-1531e32ec64e" />
+</div>
+
+<p>Go to your repository's page on GitHub and create a Pull Request (PR) from your branch to the "developer" branch (usually develop).</p>
+
+>**Note:**
+Be sure to provide a concise but informative description of the changes you have made in your PR. This will help reviewers understand your contributions.
+
+<p>Once your PR is reviewed and approved, your changes will be merged into the project's main branch.<br> Thank you for contributing to making this application even better!</p>
