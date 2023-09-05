@@ -9,7 +9,7 @@ https://github.com/ricgomez99/TodoList/assets/79469076/672b3107-4686-457b-bb83-1
 
 ## Description
 <p>
-This is a web-based to-do list application that allows you to efficiently manage your daily tasks. You can create, edit, and delete tasks, as well as add detailed descriptions to each one. This application was developed using a combination of modern technologies to provide you with a smooth and enjoyable user experience.
+This web-based to-do list application allows you to manage your daily tasks efficiently. You can create, edit, and delete tasks, as well as add detailed descriptions to each one. This application was developed using a combination of modern technologies to provide a smooth and enjoyable user experience.
 </p>
 
 ## Technologies Used:
@@ -18,6 +18,17 @@ This is a web-based to-do list application that allows you to efficiently manage
 - MongoDB with Mongoose
 - Redux
 - React Query
-- TailwindCss
+- Tailwindcss
 - Framer Motion
-- Node and express
+- Node and Express
+
+## How to use:
+<p>
+  To clone and run this application, you'll need Git and Node.js (which comes with npm) installed on your computer. From your command line:
+</p>
+
+<div align="center">
+  <img src="https://github.com/ricgomez99/TodoList/assets/79469076/9ecb9404-1f1b-4587-9d11-6c126467c333" width="600px" height="400px" />
+</div>
+
+**Note:** The app will run locally from your computer
