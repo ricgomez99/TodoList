@@ -36,7 +36,7 @@ export default function Confirmation({ deleteId }: DelteId) {
               Are you sure?
             </h2>
             <p className="text-[15px] text-[#9BA4B5] font-normal">
-              The task will be deleted permanently, and all its data won't be
+              The task will be deleted permanently, and all its data will not be
               recovered.
             </p>
           </div>
