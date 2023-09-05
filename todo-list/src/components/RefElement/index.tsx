@@ -44,4 +44,6 @@ const RefElement = forwardRef<HTMLDivElement, ChildProps>(
   }
 );
 
+RefElement.displayName = "RefElement";
+
 export default RefElement;
