@@ -11,10 +11,13 @@ GET by ID: http://localhost:3000/api/items/63f3db608b8e60ac0f57a279
 export async function getItems(_req: NextApiRequest, _res: NextApiResponse) {
   try {
     const items = await Item.find({});
-    if (!items) return _res.status(404).json({ error: "Data not found" });
-    _res.status(200).json(items);
+    if (!items) {
+      return _res.status(404).json({ error: "Data not found" });
+    }
+
+    return _res.status(200).json(items);
   } catch (error) {
-    _res.status(404).json({ error: "Error fetching data" });
+    return _res.status(404).json({ error: "Error fetching data" });
   }
 }
 
@@ -23,11 +26,12 @@ export async function getItem(_req: NextApiRequest, _res: NextApiResponse) {
     const { itemId } = _req.query;
     if (itemId) {
       const item = await Item.findById(itemId);
-      _res.status(200).json(item);
+      return _res.status(200).json(item);
     }
-    _res.status(404).json({ error: "Cannot find User id" });
+
+    return _res.status(404).json({ error: "Cannot find User id" });
   } catch (error) {
-    _res.status(404).json({ error: "Unable to find this user" });
+    return _res.status(404).json({ error: "Unable to find this user" });
   }
 }
 
@@ -38,7 +42,7 @@ export async function addItems(_req: NextApiRequest, _res: NextApiResponse) {
       ? _res.status(404).json({ error: "Unable to create document" })
       : Item.create(body, (err: any, data: any) => _res.status(201).json(data));
   } catch (error) {
-    _res.status(404).json(error);
+    return _res.status(404).json(error);
   }
 }
 
@@ -49,11 +53,12 @@ export async function putItem(_req: NextApiRequest, _res: NextApiResponse) {
 
     if (itemId && formData) {
       const item = await Item.findByIdAndUpdate(itemId, formData);
-      _res.status(200).json(item);
+      return _res.status(200).json(item);
     }
-    _res.status(404).json({ error: "Item not found" });
+
+    return _res.status(404).json({ error: "Item not found" });
   } catch (error) {
-    _res.status(404).json({ error: "Unable to update document" });
+    return _res.status(404).json({ error: "Unable to update document" });
   }
 }
 
@@ -62,10 +67,11 @@ export async function deleteItem(_req: NextApiRequest, _res: NextApiResponse) {
     const { itemId } = _req.query;
     if (itemId) {
       const deleted = await Item.findByIdAndDelete(itemId);
-      _res.status(200).json({ message: "Item deleted", deleted });
+      return _res.status(200).json({ message: "Item deleted", deleted });
     }
-    _res.status(404).json({ error: "Item not found" });
+
+    return _res.status(404).json({ error: "Item not found" });
   } catch (error) {
-    _res.status(404).json({ error: "Unble to delete document" });
+    return _res.status(404).json({ error: "Unble to delete document" });
   }
 }

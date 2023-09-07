@@ -1,4 +1,3 @@
-const BASE_URL = "http://localhost:3000";
 import { Task } from "@/app/types";
 
 type FormData = {
@@ -6,6 +5,8 @@ type FormData = {
   body: string;
 };
 
+const { DEPLOYED_URL } = process.env;
+const BASE_URL = DEPLOYED_URL;
 //Returns items object
 export const getItems = async () => {
   try {
