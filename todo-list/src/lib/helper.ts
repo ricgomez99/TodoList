@@ -10,7 +10,7 @@ const BASE_URL = DEPLOYED_URL;
 //Returns items object
 export const getItems = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/api/items`, {
+    const response = await fetch(`${BASE_URL}api/items`, {
       cache: "no-store",
     });
     const data = (await response.json()) as Task[];
@@ -25,7 +25,7 @@ export const getItems = async () => {
 
 //Returns the single item object
 export const getItem = async (itemId: string) => {
-  const response = await fetch(`${BASE_URL}/api/items/${itemId}`);
+  const response = await fetch(`${BASE_URL}api/items/${itemId}`);
   const data = (await response.json()) as Task[];
 
   if (data) return data;
@@ -40,7 +40,7 @@ export async function addItem(formData: unknown) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     };
-    const response = await fetch(`${BASE_URL}/api/items`, Info);
+    const response = await fetch(`${BASE_URL}api/items`, Info);
     const data = await response.json();
 
     return data;
@@ -59,7 +59,7 @@ export async function updateItem(itemId: string, formData: FormData) {
     body: JSON.stringify(formData),
   };
 
-  const response = await fetch(`${BASE_URL}/api/items/${itemId}`, Options);
+  const response = await fetch(`${BASE_URL}api/items/${itemId}`, Options);
   const data = await response.json();
   return data;
 }
@@ -71,7 +71,7 @@ export async function deleteItem(itemId: string) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     };
-    const response = await fetch(`${BASE_URL}/api/items/${itemId}`, Info);
+    const response = await fetch(`${BASE_URL}api/items/${itemId}`, Info);
     const data = await response.json();
 
     return data;
