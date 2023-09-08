@@ -5,8 +5,7 @@ type FormData = {
   body: string;
 };
 
-const { DEPLOYED_URL } = process.env;
-const BASE_URL = DEPLOYED_URL;
+const BASE_URL = "https://todo-list-three-lake.vercel.app";
 //Returns items object
 export const getItems = async () => {
   try {
