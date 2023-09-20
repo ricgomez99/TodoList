@@ -35,7 +35,7 @@ This web-based to-do list application allows you to manage your daily tasks effi
   To run the app locally, go to the "helpers.ts" file in the ./lib folder, and change the BASE_URL constant:
 </p>
 
-````javascript
+```javascript
 const BASE_URL = "http://localhost:3000";
 ```
 
