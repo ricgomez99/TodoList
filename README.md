@@ -40,7 +40,7 @@ const BASE_URL = "http://localhost:3000";
 ```
 
 > **Note:**
-The app will run locally from your computer, use that URL only for local development, you can comment out the original URL, but don't forget to leave it the same when you're going to pull your changes. 
+The app will run locally from your computer, use that URL only for local development, you can comment out the original URL, but don't forget to leave it the same once you're going to push your changes. 
 
 ## Contributing to the Project
 <p>We would love for you to contribute to the development of this application! Here are the steps to get started:</p>
