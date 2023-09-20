@@ -31,8 +31,16 @@ This web-based to-do list application allows you to manage your daily tasks effi
   <img src="https://github.com/ricgomez99/TodoList/assets/79469076/9ecb9404-1f1b-4587-9d11-6c126467c333" width="600px" height="400px" />
 </div>
 
+<p>
+  To run the app locally, go to the "helpers.ts" file in the ./lib folder, and change the BASE_URL constant:
+</p>
+
+````javascript
+const BASE_URL = "http://localhost:3000";
+```
+
 > **Note:**
-The app will run locally from your computer
+The app will run locally from your computer, use that URL only for local development, you can comment out the original URL, but don't forget to leave it the same when you're going to pull your changes. 
 
 ## Contributing to the Project
 <p>We would love for you to contribute to the development of this application! Here are the steps to get started:</p>
