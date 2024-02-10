@@ -33,8 +33,8 @@ export default function Card({ title, body, id, index }: CardProps) {
   return (
     <motion.div
       variants={zoomIn(0.5, 0.8)}
-      className="w-[100%] h-[100%] px-[15px] items-stretch rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism">
-      <div className="flex flex-col justify-center gap-1">
+      className="max-w-[350px] w-[100%] h-[100%] px-[15px] items-stretch rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism">
+      <div className="flex flex-col justify-center gap-1 truncate">
         <h3 className="mt-[12px] mb-0 mx-[0] font-bold text-[18px] leading-3 cursor-pointer text-[#41444B]">
           {title}
         </h3>
