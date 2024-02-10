@@ -2,22 +2,18 @@
 
 import { displayMessage } from "@/lib/alert";
 import Error from "../Error";
+import LoadingText from "../LoadingText";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { addItem, getItems } from "@/lib/helper";
 import { ActionType } from "../Inputs";
 import { useAppDispatch } from "@/lib/hooks";
 import { toggleChangeAction } from "@/redux/reducer";
+import { FormState } from "@/app/types";
 
-type Form = {
-  title: string;
-  body: string;
-};
-interface State {
-  formData: Form;
-  setFormData: React.Dispatch<ActionType>;
-}
-
-export default function AddItem({ formData, setFormData }: State) {
+export default function AddItem({
+  formData,
+  setFormData,
+}: FormState<ActionType>) {
   const queryClient = useQueryClient();
   const dispatch = useAppDispatch();
 
@@ -33,7 +29,7 @@ export default function AddItem({ formData, setFormData }: State) {
     if (Object.keys(formData).length == 0) {
       return console.log("No Data Found");
     }
-    let { title, body } = formData;
+    const { title, body } = formData;
 
     //Data that will be passed to the backend
     const model = {
@@ -46,7 +42,9 @@ export default function AddItem({ formData, setFormData }: State) {
   };
 
   //Input change handler
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       type: "textInput",
       payload: {
@@ -62,7 +60,7 @@ export default function AddItem({ formData, setFormData }: State) {
   };
 
   //Validates if the data is uploaded or if we get an error
-  if (addMutation.isLoading) return <div>Loading...</div>;
+  if (addMutation.isLoading) return <LoadingText />;
   if (addMutation.isError)
     return <Error message="Error while uploading data" />;
 
@@ -78,18 +76,18 @@ export default function AddItem({ formData, setFormData }: State) {
         />
       </div>
       <div className="input-type">
-        <input
-          type="text"
+        <textarea
           name="body"
-          className="border w-full px-5 py-3 focus:outline-none rounded-md "
+          className="border w-full px-5 py-3 focus:outline-none rounded-md"
           placeholder="Note"
-          onChange={handleChange}
-        />
+          rows={5}
+          cols={20}
+          maxLength={200}
+          onChange={handleChange}></textarea>
       </div>
       <button
         onClick={handleClick}
-        className="py-2 px-4 w-2/2 bg-[#425a78] font-bold hover:bg-[#2e4765] flex justify-center border rounded-md text-gray-100"
-      >
+        className="py-2 px-4 w-2/2 bg-[#425a78] font-bold hover:bg-[#2e4765] flex justify-center border rounded-md text-gray-100">
         Create
       </button>
     </form>

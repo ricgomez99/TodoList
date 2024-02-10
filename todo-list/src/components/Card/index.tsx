@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { fadeIn } from "@/utils/motion";
+import { zoomIn } from "@/utils/motion";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
   toggleChangeAction,
@@ -8,15 +8,9 @@ import {
   deleteAction,
 } from "@/redux/reducer";
 import { MdDelete, MdEditSquare } from "react-icons/md";
+import { CardProps } from "@/app/types";
 
-interface Props {
-  id: string | any;
-  title: string;
-  body: string;
-  date?: string;
-  index?: number | any;
-}
-export default function Card({ title, body, id, index }: Props) {
+export default function Card({ title, body, id, index }: CardProps) {
   // current state
   const stateVisible = useAppSelector((state) => state.app.client.toggleForm);
   const dispatch = useAppDispatch();
@@ -38,17 +32,16 @@ export default function Card({ title, body, id, index }: Props) {
 
   return (
     <motion.div
-      variants={fadeIn("down", "spring", index * 0.5, 1)}
-      className="lg:w-[600px] min-h-[80px] max-w-[500px] w-[100%] rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism"
-    >
-      <details className="flex flex-col justify-start">
-        <summary className="mt-[12px] mb-0 mx-[0] p-[0.5em] font-bold text-[18px] leading-3 cursor-pointer text-[#41444B]">
+      variants={zoomIn(0.5, 0.8)}
+      className="w-[100%] h-[100%] px-[15px] items-stretch rounded-md flex flex-row gap-2 justify-between mx-auto my-[15px] glassmorphism">
+      <div className="flex flex-col justify-center gap-1">
+        <h3 className="mt-[12px] mb-0 mx-[0] font-bold text-[18px] leading-3 cursor-pointer text-[#41444B]">
           {title}
-        </summary>
-        <p className="text-[15px] text-[#9BA4B5] font-normal px-[24px] pb-[10px]">
+        </h3>
+        <p className="text-[15px] text-[#9BA4B5] font-normal pb-[10px]">
           {body}
         </p>
-      </details>
+      </div>
       <div className="flex flex-col justify-evenly gap-[10px] max-h-[40px] self-center  align-middle my-[8px] mx-[10px]">
         <MdDelete
           width={25}
@@ -66,5 +59,3 @@ export default function Card({ title, body, id, index }: Props) {
     </motion.div>
   );
 }
-
-// color="#4b4d52"
