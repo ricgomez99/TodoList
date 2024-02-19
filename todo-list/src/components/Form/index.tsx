@@ -35,7 +35,7 @@ export default function Form() {
         whileInView="show"
         viewport={{ once: false, amount: 0.25 }}
         className={`${styles.innerWidth} mx-auto flex flex-col`}>
-        <TypingText title="> Tasks" textStyles="text-center" />
+        <TypingText title="Notes" textStyles="text-center" />
         <TitleText title={title} textStyles="text-center" />
 
         <motion.div

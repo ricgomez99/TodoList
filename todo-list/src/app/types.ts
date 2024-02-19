@@ -26,3 +26,8 @@ export interface FormState<T> {
   };
   setFormData: React.Dispatch<T>;
 }
+
+export type TooltipChildren = {
+  children?: React.ReactNode;
+  content: String;
+};
