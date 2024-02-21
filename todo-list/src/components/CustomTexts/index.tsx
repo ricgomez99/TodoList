@@ -12,8 +12,7 @@ interface Data {
 export const TypingText = ({ title, textStyles }: Data) => (
   <motion.p
     variants={textContainer}
-    className={`font-normal text-[14px] text-secondary-gray ${textStyles}`}
-  >
+    className={`font-normal text-[24px] text-secondary-gray ${textStyles}`}>
     {Array.from(title).map((letter: any, index) => (
       <motion.span variants={textVariant2} key={index}>
         {letter === " " ? "\u00A0" : letter}
@@ -27,8 +26,7 @@ export const TitleText = ({ title, textStyles }: Data) => (
     variants={textVariant2}
     initial="hidden"
     whileInView="show"
-    className={`mt-[10px] font-bold md:text-[45px] text-[35px] text-black ${textStyles}`}
-  >
+    className={`mt-[10px] font-bold md:text-[45px] text-[35px] text-black ${textStyles}`}>
     {title}
   </motion.h2>
 );

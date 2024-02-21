@@ -1,11 +1,8 @@
 import { Task } from "@/app/types";
+import { PostBody } from "@/app/types";
 
-type FormData = {
-  title: string;
-  body: string;
-};
-
-const BASE_URL = "https://todo-list-three-lake.vercel.app";
+//const BASE_URL = "https://todo-list-three-lake.vercel.app";
+const BASE_URL = process.env.BASE_URL ?? "http://localhost:3000";
 //Returns items object
 export const getItems = async () => {
   try {
@@ -32,7 +29,7 @@ export const getItem = async (itemId: string) => {
 };
 
 //Post an Item
-export async function addItem(formData: unknown) {
+export async function addItem(formData: PostBody) {
   try {
     const Info = {
       method: "POST",
@@ -51,7 +48,7 @@ export async function addItem(formData: unknown) {
 }
 
 //Update an Item
-export async function updateItem(itemId: string, formData: FormData) {
+export async function updateItem(itemId: string, formData: PostBody) {
   const Options = {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

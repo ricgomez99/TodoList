@@ -9,7 +9,7 @@ export default async function Home() {
       <div className="relative z-0">
         <Form />
       </div>
-      <div className="relative">
+      <div className="relative flex">
         <Items />
       </div>
     </div>
