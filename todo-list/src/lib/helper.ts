@@ -2,7 +2,7 @@ import { Task } from "@/app/types";
 import { PostBody } from "@/app/types";
 
 //const BASE_URL = "http://localhost:3000";
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "https://todo-list-three-lake.vercel.app";
 //Returns items object
 export const getItems = async () => {
   try {
