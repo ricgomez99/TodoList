@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { staggerContainer } from "@/utils/motion";
 import { useQuery } from "@tanstack/react-query";
 import { getItems } from "@/lib/helper";
@@ -47,7 +47,9 @@ export default function Items() {
             />
           </motion.div>
         ))}
-      {deleteId && <Confirmation deleteId={deleteId} />}
+      <AnimatePresence initial={false} onExitComplete={() => null}>
+        {deleteId && <Confirmation deleteId={deleteId} />}
+      </AnimatePresence>
     </div>
   );
 }

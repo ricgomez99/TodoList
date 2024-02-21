@@ -5,6 +5,10 @@ export type Task = {
   date?: string;
 };
 
+export type ComponentWithChildren = {
+  children: React.ReactNode;
+};
+
 export type PostBody = {
   title: string;
   body: string;
