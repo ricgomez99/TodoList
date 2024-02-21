@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Item from "@/models/itemModel";
-
+import { PostBody } from "@/app/types";
+import { Task } from "@/app/types";
 /* Endpoints 
 PUT, DELETE: http://localhost:3000/api/items/?id=63f26b20b3bfc1990d3a4e88
 GET, POST: http://localhost:3000/api/items 
@@ -10,7 +11,7 @@ GET by ID: http://localhost:3000/api/items/63f3db608b8e60ac0f57a279
 /*Controllers*/
 export async function getItems(_req: NextApiRequest, _res: NextApiResponse) {
   try {
-    const items = await Item.find({});
+    const items: Task[] = await Item.find({});
     if (!items) {
       return _res.status(404).json({ error: "Data not found" });
     }
@@ -40,7 +41,9 @@ export async function addItems(_req: NextApiRequest, _res: NextApiResponse) {
     const { body } = _req;
     !body
       ? _res.status(404).json({ error: "Unable to create document" })
-      : Item.create(body, (err: any, data: any) => _res.status(201).json(data));
+      : Item.create(body, (err: any, data: PostBody) =>
+          _res.status(201).json(data)
+        );
   } catch (error) {
     return _res.status(404).json(error);
   }

@@ -39,10 +39,10 @@ export default function Inputs() {
   const formId = useAppSelector((state) => state.app.client.formId);
 
   return (
-    <div className="container mt-[18px] mx-auto flex justify-center">
+    <section className="container mt-[18px] mx-auto flex justify-center">
       {formId
         ? UpdateItem({ formId, formData, setFormData })
         : AddItem({ formData, setFormData })}
-    </div>
+    </section>
   );
 }
